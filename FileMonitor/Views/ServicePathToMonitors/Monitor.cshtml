@@ -1,0 +1,95 @@
+﻿@model IEnumerable<FileMonitor.DataDB.ServicePathToMonitor>
+
+@{
+    ViewData["Title"] = "Monitor";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PathToMonitor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceSysId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastChangeDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeCheckInterval)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileNamePattern)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfFilesForToday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastFileReceived)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfFilesForYesterday)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PathToMonitor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceSysId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastChangeDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeCheckInterval)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileNamePattern)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfFilesForToday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastFileReceived)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfFilesForYesterday)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ServicePathSysId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ServicePathSysId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ServicePathSysId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,83 @@
+﻿@model FileMonitor.DataDB.ServicePathToMonitor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ServicePathToMonitor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PathToMonitor" class="control-label"></label>
+                <input asp-for="PathToMonitor" class="form-control" />
+                <span asp-validation-for="PathToMonitor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceSysId" class="control-label"></label>
+                <input asp-for="ServiceSysId" class="form-control" />
+                <span asp-validation-for="ServiceSysId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastChangeDateTime" class="control-label"></label>
+                <input asp-for="LastChangeDateTime" class="form-control" />
+                <span asp-validation-for="LastChangeDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeCheckInterval" class="control-label"></label>
+                <input asp-for="TimeCheckInterval" class="form-control" />
+                <span asp-validation-for="TimeCheckInterval" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileNamePattern" class="control-label"></label>
+                <input asp-for="FileNamePattern" class="form-control" />
+                <span asp-validation-for="FileNamePattern" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfFilesForToday" class="control-label"></label>
+                <input asp-for="NumberOfFilesForToday" class="form-control" />
+                <span asp-validation-for="NumberOfFilesForToday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastFileReceived" class="control-label"></label>
+                <input asp-for="LastFileReceived" class="form-control" />
+                <span asp-validation-for="LastFileReceived" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfFilesForYesterday" class="control-label"></label>
+                <input asp-for="NumberOfFilesForYesterday" class="form-control" />
+                <span asp-validation-for="NumberOfFilesForYesterday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
