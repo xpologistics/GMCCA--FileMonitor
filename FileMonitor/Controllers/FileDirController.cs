@@ -15,7 +15,7 @@ namespace FileMonitor.Controllers
         public IActionResult FileDirView()
         {
             //Fetch all files in the Folder (Directory).
-            string[] filePaths = Directory.GetFiles(Path.Combine(this.Environment.WebRootPath, @"E:\XMS_File_Interfaces\XMSFileDistributorService\Archive"));
+            string[] filePaths = Directory.GetFiles(Path.Combine(this.Environment.WebRootPath, @"C:\Users\DXGUIGAR\Downloads"));
 
             //Copy File names to Model collection.
             List<FileDirModel> files = new List<FileDirModel>();
