@@ -1,0 +1,32 @@
+﻿@using FileMonitor.Models
+@model List<FileDirModel>
+ 
+   
+@{
+    ViewData["Title"] = "FileDirView";
+}
+
+ 
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>FileDirView</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>File Name</th>
+            <th></th>
+        </tr>
+        @foreach (FileDirModel file in Model)
+        {
+            <tr>
+                <td>@file.FileName</td>
+                <td>@Html.ActionLink("Download", "DownloadFile", new { fileName = file.FileName })</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

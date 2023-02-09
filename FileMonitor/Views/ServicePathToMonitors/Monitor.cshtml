@@ -4,92 +4,114 @@
     ViewData["Title"] = "Monitor";
 }
 
-<h1>Index</h1>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PathToMonitor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ServiceSysId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastChangeDateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimeCheckInterval)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Active)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FileNamePattern)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfFilesForToday)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastFileReceived)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfFilesForYesterday)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PathToMonitor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServiceSysId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastChangeDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeCheckInterval)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FileNamePattern)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfFilesForToday)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastFileReceived)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfFilesForYesterday)
-            </td>
+<h1>RLV/XMS File Monitor</h1>
+<br />
+<br />
+<br />
+
+<style>
+
+    h1{
+        color: black;
+        font-size: 45px;
+        text-align: center;
+        }
+
+
+    table, th, td{
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                    }
+
+    table.center{
+                    margin-left: -30%;
+                    margin-right: -20%;
+                 }
+    
+    th{
+        text-align: center;
+        padding: 10px;
+        background-color: ButtonFace;
+        }
+
+    td{
+        text-align: center;
+        padding: 5px;
+        white-space: nowrap;
+        }
+
+
+        .green{
+  background-color:green;
+ }
+
+.blue{
+  background-color:blue;
+ }
+
+.green{
+  background-color:red;
+ }
+
+</style>
+
+
+
+
+    <table class="center">
+       
+            <tr>
+                <th>Service</th>
+                <th>File Pattern</th>
+                <th style="white-space: nowrap;">Check Interval (Minutes)</th>
+                <th style="white-space: nowrap;">Last File Received</th>
+                <th style="white-space: nowrap;">last Received Date/Time (CDT)</th>
+                <th style="white-space: nowrap;">Files Count today</th>
+                <th style="white-space: nowrap;">Files Count Yesteday</th>
+                <th>Status</th>
+            </tr>
+       
+            @foreach (var item in Model)
+            {
+                <tr>
+            <td>@Html.DisplayFor(modelItem => item.ServiceSysId)</td>            
+            <td>@Html.DisplayFor(modelItem => item.FileNamePattern)</td>
+            <td>@Html.DisplayFor(modelItem => item.TimeCheckInterval)</td>
+            <td>@Html.DisplayFor(modelItem => item.LastFileReceived)</td>    
+            <td>@Html.DisplayFor(modelItem => item.LastChangeDateTime)</td>
+            <td>@Html.DisplayFor(modelItem => item.NumberOfFilesForToday)</td>
+            <td>@Html.DisplayFor(modelItem => item.NumberOfFilesForYesterday)</td>
+                      
+            @{
+                string color = "#fff", font = "#fff#";
+                if (item.Status == "Good")
+                {
+                    color = "green";
+                    font = "green";
+                }
+            else if (item.Status != "Good")
+                {
+                    color = "red";
+                    font = "red";
+                }
+            }
+            <td style="width: 10%; text-align: center;background-color: @color;color: @font"><%= item.Status %></td>
+
+
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ServicePathSysId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ServicePathSysId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ServicePathSysId">Delete</a>
             </td>
-        </tr>
-}
-    </tbody>
-</table>
+                </tr>
+            }
+    </table>
+
+
+
+   
