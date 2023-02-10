@@ -12,10 +12,10 @@ namespace FileMonitor.Controllers
             Environment = _environment;
         }
 
-        public IActionResult FileDirView()
+        public IActionResult FileDir()
         {
             //Fetch all files in the Folder (Directory).
-            string[] filePaths = Directory.GetFiles(Path.Combine(this.Environment.WebRootPath, @"C:\Users\DXGUIGAR\Downloads"));
+            string[] filePaths = Directory.GetFiles(Path.Combine(this.Environment.WebRootPath, @"C:\Users\DXGUIGAR\MR_Applications\BAC"));
 
             //Copy File names to Model collection.
             List<FileDirModel> files = new List<FileDirModel>();
@@ -33,7 +33,7 @@ namespace FileMonitor.Controllers
             string path = Path.Combine(this.Environment.WebRootPath, "Files/") + fileName;
 
             //Read the File data into Byte Array.
-            byte[] bytes = System.IO.File.ReadAllBytes(path);
+            byte[] bytes = System.IO.File.ReadAllBytes(@"C:\Users\DXGUIGAR\MR_Applications\BAC");
 
             //Send the File to Download.
             return File(bytes, "application/octet-stream", fileName);

@@ -19,7 +19,7 @@ namespace FileMonitor.Controllers
         }
 
         // GET: ServicePathToMonitors
-        public async Task<IActionResult> Monitor()
+        public async Task<IActionResult> Index()
         {
               return View(await _context.ServicePathToMonitors.ToListAsync());
         }
@@ -42,27 +42,32 @@ namespace FileMonitor.Controllers
             return View(servicePathToMonitor);
         }
 
-        // GET: ServicePathToMonitors/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: ServicePathToMonitors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ServicePathSysId,PathToMonitor,ServiceSysId,LastChangeDateTime,CreateDate,TimeCheckInterval,Status,Active,FileNamePattern,NumberOfFilesForToday,LastFileReceived,NumberOfFilesForYesterday")] ServicePathToMonitor servicePathToMonitor)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(servicePathToMonitor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Monitor));
-            }
-            return View(servicePathToMonitor);
-        }
+        /**********************
+       // GET: ServicePathToMonitors/Create
+       public IActionResult Create()
+       {
+           return View();
+       }
+
+
+
+       // POST: ServicePathToMonitors/Create
+       // To protect from overposting attacks, enable the specific properties you want to bind to.
+       // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       [HttpPost]
+       [ValidateAntiForgeryToken]
+       public async Task<IActionResult> Create([Bind("ServicePathSysId,PathToMonitor,ServiceSysId,LastChangeDateTime,CreateDate,TimeCheckInterval,Status,Active,FileNamePattern,NumberOfFilesForToday,LastFileReceived,NumberOfFilesForYesterday")] ServicePathToMonitor servicePathToMonitor)
+       {
+           if (ModelState.IsValid)
+           {
+               _context.Add(servicePathToMonitor);
+               await _context.SaveChangesAsync();
+               return RedirectToAction(nameof(Monitor));
+           }
+           return View(servicePathToMonitor);
+       }
+       ************************/
 
         // GET: ServicePathToMonitors/Edit/5
         public async Task<IActionResult> Edit(int? id)
