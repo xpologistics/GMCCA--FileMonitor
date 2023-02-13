@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FileMonitor.DataDB;
 
-public partial class Service
+public partial class model2
 {
     public int ServiceSysId { get; set; }
 

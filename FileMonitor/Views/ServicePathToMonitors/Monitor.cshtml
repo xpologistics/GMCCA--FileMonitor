@@ -1,32 +1,24 @@
-﻿@model IEnumerable<FileMonitor.DataDB.ServicePathToMonitor>
+﻿@model IEnumerable<FileMonitor.DataDB.ServiceViewModel>
 
 @{
     ViewData["Title"] = "Monitor";
 }
 
+
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
 
-<h1>RLV/XMS File Monitor</h1>
-<br />
-<br />
-<br />
 
 <style>
-
     h1{
         color: black;
         font-size: 45px;
         text-align: center;
         }
-
-
     table, th, td{
                     border: 1px solid black;
                     border-collapse: collapse;
                     }
-
     table.center{
                     margin-left: -30%;
                     margin-right: -20%;
@@ -37,49 +29,53 @@
         padding: 10px;
         background-color: ButtonFace;
         }
-
     td{
         text-align: center;
         padding: 5px;
         white-space: nowrap;
         }
-
-
         .green{
   background-color:green;
  }
-
 .blue{
   background-color:blue;
  }
-
 .green{
   background-color:red;
  }
-
 </style>
 
+</head>
+
+
+<h1>RLV/XMS File Monitor</h1>
+<br />
+<br />
+<br />
 
 
 
-    <table class="center">
-       
-            <tr>
+
+
+<table class="center">
+
+<tr>
                 <th>Service</th>
-                <th>File Pattern</th>
                 <th style="white-space: nowrap;">Check Interval (Minutes)</th>
                 <th style="white-space: nowrap;">Last File Received</th>
                 <th style="white-space: nowrap;">last Received Date/Time (CDT)</th>
                 <th style="white-space: nowrap;">Files Count today</th>
                 <th style="white-space: nowrap;">Files Count Yesteday</th>
                 <th>Status</th>
-            </tr>
-       
-            @foreach (var item in Model)
-            {
-                <tr>
-            <td>@Html.DisplayFor(modelItem => item.ServiceSysId)</td>            
-            <td>@Html.DisplayFor(modelItem => item.FileNamePattern)</td>
+
+</tr>
+
+@foreach (var item in Model) 
+{
+
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.ServiceName)</td> 
+        <td>@Html.DisplayFor(modelItem => item.FileNamePattern)</td>
             <td>@Html.DisplayFor(modelItem => item.TimeCheckInterval)</td>
             <td>@Html.DisplayFor(modelItem => item.LastFileReceived)</td>    
             <td>@Html.DisplayFor(modelItem => item.LastChangeDateTime)</td>
@@ -101,17 +97,13 @@
             }
             <td style="width: 10%; text-align: center;background-color: @color;color: @font"><%= item.Status %></td>
 
-
-
-            <td>
+             <td>
                 <a asp-action="Edit" asp-route-id="@item.ServicePathSysId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ServicePathSysId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ServicePathSysId">Delete</a>
             </td>
-                </tr>
-            }
-    </table>
+    </tr>
 
+}
 
-
-   
+</table>

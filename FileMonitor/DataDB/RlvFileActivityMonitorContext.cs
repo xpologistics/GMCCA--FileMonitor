@@ -17,9 +17,9 @@ public partial class RlvFileActivityMonitorContext : DbContext
 
     public virtual DbSet<EmailDistributionList> EmailDistributionLists { get; set; }
 
-    public virtual DbSet<Service> Services { get; set; }
+    public virtual DbSet<model2> Services { get; set; }
 
-    public virtual DbSet<ServicePathToMonitor> ServicePathToMonitors { get; set; }
+    public virtual DbSet<model1> ServicePathToMonitors { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -39,9 +39,11 @@ public partial class RlvFileActivityMonitorContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<Service>(entity =>
+        modelBuilder.Entity<model2>(entity =>
         {
             entity.HasKey(e => e.ServiceSysId);
+
+            entity.ToTable("Services");
 
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
             entity.Property(e => e.ServiceName)
@@ -49,7 +51,7 @@ public partial class RlvFileActivityMonitorContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<ServicePathToMonitor>(entity =>
+        modelBuilder.Entity<model1>(entity =>
         {
             entity.HasKey(e => e.ServicePathSysId);
 

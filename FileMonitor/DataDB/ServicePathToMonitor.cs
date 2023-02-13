@@ -3,13 +3,15 @@ using System.Collections.Generic;
 
 namespace FileMonitor.DataDB;
 
-public partial class ServicePathToMonitor
+
+
+public partial class model1
 {
     public int ServicePathSysId { get; set; }
 
-    public string PathToMonitor { get; set; } = null!;
-
     public int ServiceSysId { get; set; }
+
+    public string PathToMonitor { get; set; } = null!;
 
     public DateTime LastChangeDateTime { get; set; }
 
@@ -29,3 +31,6 @@ public partial class ServicePathToMonitor
 
     public int? NumberOfFilesForYesterday { get; set; }
 }
+
+
+
