@@ -10,7 +10,6 @@ public partial class model1
     public int ServicePathSysId { get; set; }
 
     public int ServiceSysId { get; set; }
-
     public string PathToMonitor { get; set; } = null!;
 
     public DateTime LastChangeDateTime { get; set; }
@@ -30,6 +29,8 @@ public partial class model1
     public string? LastFileReceived { get; set; }
 
     public int? NumberOfFilesForYesterday { get; set; }
+
+
 }
 
 

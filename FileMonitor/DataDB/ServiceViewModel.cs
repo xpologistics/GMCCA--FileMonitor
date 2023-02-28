@@ -15,7 +15,8 @@ namespace FileMonitor.DataDB
         public int? NumberOfFilesForToday { get; set; }
         public int? NumberOfFilesForYesterday { get; set; }
         public string Status { get; set; } = null!;
-        public int ServicePathSysId { get; set; }
+        public string? ServicePathSysId { get; set; }
+        public string? PathToMonitor { get; set; }  
     }
 }
 

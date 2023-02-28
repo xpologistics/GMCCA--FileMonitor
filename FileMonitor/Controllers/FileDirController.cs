@@ -1,22 +1,46 @@
 ﻿using FileMonitor.Models;
 using Microsoft.AspNetCore.Mvc;
+using FileMonitor.DataDB;
+using Microsoft.EntityFrameworkCore;
 
 namespace FileMonitor.Controllers
 {
     public class FileDirController : Controller
     {
-        private Microsoft.AspNetCore.Hosting.IWebHostEnvironment Environment;
 
-        public FileDirController(Microsoft.AspNetCore.Hosting.IWebHostEnvironment _environment)
+        //private Microsoft.AspNetCore.Hosting.IWebHostEnvironment Environment;
+
+        //public FileDirController(Microsoft.AspNetCore.Hosting.IWebHostEnvironment _environment)
+        //{
+        //    Environment = _environment;
+        //}
+
+
+        private readonly RlvFileActivityMonitorContext _context;
+
+        public FileDirController(RlvFileActivityMonitorContext context)
         {
-            Environment = _environment;
+            _context = context;
         }
 
-        public IActionResult FileDir()
-        {
-            //Fetch all files in the Folder (Directory).
-            string[] filePaths = Directory.GetFiles(Path.Combine(this.Environment.WebRootPath, @"C:\Users\DXGUIGAR\MR_Applications\BAC"));
 
+        [Route("/ServicePathToMonitors/FileDir/{ServicePathId}")]
+        public ActionResult FileDir(int ServicePathId)
+        {
+
+            var path = _context.ServicePathToMonitors
+             .Include(s => s.PathToMonitor)
+             .AsNoTracking()
+             .FirstOrDefaultAsync(nameof => nameof.ServicePathSysId == ServicePathId);
+
+
+            var model = _context.ServicePathToMonitors.ServicePathSysId;
+            return View(model);
+
+
+            //Fetch all files in the Folder (Directory).
+            string[] filePaths = Directory.GetFiles(Path.Combine("C:", path.ToString()));
+            
             //Copy File names to Model collection.
             List<FileDirModel> files = new List<FileDirModel>();
             foreach (string filePath in filePaths)
@@ -25,7 +49,17 @@ namespace FileMonitor.Controllers
             }
 
             return View(files);
+           
         }
+
+
+
+
+        
+
+
+
+        /**
 
         public FileResult DownloadFile(string fileName)
         {
@@ -38,6 +72,7 @@ namespace FileMonitor.Controllers
             //Send the File to Download.
             return File(bytes, "application/octet-stream", fileName);
         }
+        **/
     }
 
 }

@@ -28,7 +28,8 @@ namespace FileMonitor.Controllers
                                   LastChangeDateTime = m1.LastChangeDateTime,
                                   NumberOfFilesForToday = m1.NumberOfFilesForToday,
                                   NumberOfFilesForYesterday = m1.NumberOfFilesForYesterday,
-                                  Status = m1.Status                                 
+                                  Status = m1.Status,
+                                  ServicePathSysId = m1.ServicePathSysId.ToString()                               
                               }
                              ).ToList();
 
