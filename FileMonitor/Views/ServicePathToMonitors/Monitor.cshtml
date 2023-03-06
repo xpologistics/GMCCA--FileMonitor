@@ -20,32 +20,46 @@
         }
     
     th{        
-        border: 1px solid black;
+        border: 1px solid;
+        border-color: black;
         border-collapse: collapse;
         text-align: center;
         padding: 10px;
         background-color: ButtonFace;
-        cursor: pointer;
+        cursor: pointer;      
         }
 
 
     td{
-        border: 1px solid black;
+        border: 1px solid;
+        border-color: black;
         border-collapse: collapse;
         text-align: center;
         padding: 5px;
         white-space: nowrap;
         }
 
+        table tr th:nth-child(9){
+        display:none;
+        }
+        table tr td:nth-child(9){
+        display:none;
+        }
 
- table tr th:nth-child(8), table tr td:nth-child(8){
- display:none;
-}
+        table tr th:nth-child(1){
+        display:none;
+        }
+        table tr td:nth-child(1){
+        display:none;
+        }
 
-.Failed {
-    background-color: red;
-    color: white;
-}
+
+
+    .Failed {
+        background-color: red;
+        color: white;
+        }
+
 </style>
 
 </head>
@@ -56,7 +70,7 @@
 <br />
 <br />
 
-<table id="myTable" style="margin-left: -15%; font-size: 12px; ">
+<table id="myTable" style="margin-left: -10%; font-size: 12px; ">
      <thead>
             <tr>
                 <th onclick="sortTable(0)" style="white-space: nowrap;">Service Path Id</th>
@@ -68,6 +82,7 @@
                 <th onclick="sortTable(6)" style="white-space: nowrap;">Files Count today</th>
                 <th onclick="sortTable(7)" style="white-space: nowrap;">Files Count Yesteday</th>
                 <th>Status</th>
+                <th></th>
 
             </tr>
     </thead>
@@ -83,22 +98,40 @@
                 <td>@Html.DisplayFor(modelItem => item.LastFileReceived)</td>    
                 <td>@Html.DisplayFor(modelItem => item.LastChangeDateTime)</td>
 
-
                 @{
                     var ServicePathId = "FileDir/" + item.ServicePathSysId;
-                    <td><a href=@ServicePathId>@Html.DisplayFor(modelItem => item.NumberOfFilesForToday)</a></td>
+                    
+
+                    <td><a onclick="location.href=this.href+'?xyz='+columnVal;return false;" href=@ServicePathId>@Html.DisplayFor(modelItem => item.NumberOfFilesForYesterday)</a></td>                   
+                    <td><a href=@ServicePathId>@Html.DisplayFor(modelItem => item.NumberOfFilesForYesterday)</a></td>
                  }
 
-                
-               
-
-                <td>@Html.DisplayFor(modelItem => item.NumberOfFilesForYesterday)</td>
                 <td class="status">@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>@Html.ActionLink("View All Files", "View All Files")</td>
             </tr> 
         }
     </tbody>
 
 </table>
+
+
+<script type="text/javascript">
+    var val = "10";
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#myTable tbody').on( 'click', 'td', function () {
+            var columnVal = $(this).closest("td").index()
+            alert(columnVal);
+        });
+    });
+</script>
+
+
+
+
 
 
 <script type="text/javascript">
@@ -113,6 +146,9 @@
         });
     });
 </script>
+
+
+
 
 
 

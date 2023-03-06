@@ -7,5 +7,6 @@ namespace FileMonitor.Models
     public class FileDirModel
     {
         public string FileName { get; set; }
+        public DateTime LastModifiedDate { get; set; }
     }
 }
